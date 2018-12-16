@@ -7,14 +7,6 @@ from lxml import etree
 # Define Path Variables
 CURDIR = os.path.dirname(__file__)
 
-# Define BuyProxies.org Credentials
-USERID = ''
-APIKEY = ''
-
-# Check that credentials are defined
-if APIKEY or USERID == '':
-    raise Exception("Error: APIKEY or USERID incorrectly configured in proxy/settings.py.")
-
 
 def elapsed_time(previous_time):
     """
@@ -42,7 +34,7 @@ class Proxy(object):
     unnecessary lookups.
     """
 
-    def __init__(self):
+    def __init__(self, userid, apikey):
 
         # Define Record variables
         self.record = os.path.join(CURDIR, 'proxydata.xml')
@@ -60,8 +52,8 @@ class Proxy(object):
         self.format = '1'
 
         # Ingest Credentials
-        self.USERID = USERID
-        self.APIKEY = APIKEY
+        self.USERID = userid
+        self.APIKEY = apikey
 
         # Enforce type for commonly mistyped.
         if type(self.USERID) is int:
@@ -113,7 +105,7 @@ class Proxy(object):
                     ))
 
         # Define API URL
-        self.apiurl = f'http://api.buyproxies.org/?a=showProxies&pid={USERID}&key={APIKEY}'
+        self.apiurl = f'http://api.buyproxies.org/?a=showProxies&pid={userid}&key={apikey}'
 
     @staticmethod
     def random_test_url():

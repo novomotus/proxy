@@ -3,14 +3,16 @@ import random
 from datetime import datetime, timedelta
 import os
 from lxml import etree
-import settings
 
 # Define Path Variables
 CURDIR = os.path.dirname(__file__)
 
+# Define BuyProxies.org Credentials
+USERID = ''
+APIKEY = ''
 
 # Check that credentials are defined
-if settings.APIKEY or settings.USERID == '':
+if APIKEY or USERID == '':
     raise Exception("Error: APIKEY or USERID incorrectly configured in proxy/settings.py.")
 
 
@@ -58,8 +60,8 @@ class Proxy(object):
         self.format = '1'
 
         # Ingest Credentials
-        self.USERID = settings.USERID
-        self.APIKEY = settings.APIKEY
+        self.USERID = USERID
+        self.APIKEY = APIKEY
 
         # Enforce type for commonly mistyped.
         if type(self.USERID) is int:
@@ -111,7 +113,7 @@ class Proxy(object):
                     ))
 
         # Define API URL
-        self.apiurl = f'http://api.buyproxies.org/?a=showProxies&pid={settings.USERID}&key={settings.APIKEY}'
+        self.apiurl = f'http://api.buyproxies.org/?a=showProxies&pid={USERID}&key={APIKEY}'
 
     @staticmethod
     def random_test_url():

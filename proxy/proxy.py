@@ -373,14 +373,15 @@ class Proxy(object):
             # NOTE: Updates self.proxies variable as well.
             self.update_record(good)
 
-    def get(self, url, headers=None):
+    def get(self, url, headers=None, **kwargs):
         """
         Makes a proxy request using the requests library and a buyproxy.org proxy.
         NOTE: No error handling or conditional operation other than methods, paramters, and headers.
+        NOTE: If headers not explicitly-set, will default to using only a random user agent.
         :param url url string to send proxy request to.
+        :param headers: dict of http header parameters.
         :return: request response object
         """
-
         # Use random user-agent at least, if no headers specified
         if headers is None:
             headers = {'user-agent': self.random_user_agent()}
@@ -392,4 +393,4 @@ class Proxy(object):
         proxy = self.format_proxy(user=p[2], password=p[3], host=p[0], port=p[1])
 
         # make request
-        return requests.get(url, headers=headers, proxies=proxy)
+        return requests.get(url, headers=headers, proxies=proxy, **kwargs)

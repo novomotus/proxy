@@ -13,7 +13,7 @@ setup(
         'idna==2.8',
         'lxml==4.2.5',
         'requests==2.21.0',
-        'urllib3==1.24.1'
+        'urllib3==1.26.5'
     ],
     url='https://github.com/NOVOMOTUS/proxy',
     author='Novomotus',

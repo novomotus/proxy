@@ -8,7 +8,7 @@ setup(
     description='Makes and handles http requests using proxy servers.',
     long_description=open('README.md').read(),
     install_requires=[
-        'certifi==2018.11.29',
+        'certifi==2022.12.7',
         'chardet==3.0.4',
         'idna==2.8',
         'lxml==4.2.5',
